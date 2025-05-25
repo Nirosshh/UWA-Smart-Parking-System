@@ -137,7 +137,6 @@ void sendCommand(String cmd) {
 // Geting base line of the QMC6310 sensor
 void getBaseline() {
   // Recalibrate magnetic baseline
-  //Serial.println("Recalibrating baseline...");
 
   while (!qmc.isDataReady()) {
     delay(10);
@@ -157,7 +156,7 @@ void getBaseline() {
 
 void loop() {
   // Main loop: read sensor, compare with baseline, update parking status
-  if (millis() - lastBaselineUpdate >= baselineIntervalMs) {
+  if (millis() - lastBaselineUpdate >= baselineIntervalMs && Parking_Indicator_In == 0) {
     getBaseline();
     lastBaselineUpdate = millis();
   }
